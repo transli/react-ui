@@ -1,8 +1,9 @@
-
 import React from 'react';
+import { AppLoading } from 'expo';
 import {  Image } from 'react-native';
+import * as Font from 'expo-font';
 import { Container, Header, Content, Card,Text, CardItem, Thumbnail,  Button, Icon, Left, Body, Right, Form } from 'native-base';
-import{Component} from 'module';
+
 
 export default class App extends React.Component {
   constructor(props){
@@ -12,16 +13,17 @@ export default class App extends React.Component {
       } ;
   }  
  async componentWillMount(){
-  await  Expo.Font.loadAsync({
+  await  Font.loadAsync({
       Roboto:require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium:require("native-base/Fonts/Roboto_medium.ttf")
+      Roboto_medium:require("native-base/Fonts/Roboto_medium.ttf"),
+      ...Ionicons.font,
     });
     this.setState({isloading:false})
   }
  
   render() {
     if(this.state.isloading){
-      return <Expo.AppLoading />;
+      return <AppLoading />;
     }
   return (
     <Container>
@@ -63,4 +65,3 @@ export default class App extends React.Component {
   );
 }
 }
-
